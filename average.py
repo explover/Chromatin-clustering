@@ -3,6 +3,7 @@
 import pyBigWig
 from pathos.multiprocessing import ProcessingPool 
 import sys, getopt
+from tqdm import tqdm
 
 def minCoverage(bw, chroms):
     return(min([bw.stats(i, type="coverage") for i in chroms]))
@@ -10,7 +11,7 @@ def minCoverage(bw, chroms):
 
 def avgTrack(file, chrom, size, chromsize):
     with pyBigWig.open(file) as bw:
-        avg = [bw.stats(chrom, i * size, (i + 1) * size)[0] for i in range(int(chromsize / size))]
+        avg = [bw.stats(chrom, i * size, (i + 1) * size)[0] for i in tqdm(range(int(chromsize / size)))]
         return([chrom, avg])
 
 def delNone(l):
