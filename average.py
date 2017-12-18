@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/python3
 
 import pyBigWig
 from pathos.multiprocessing import ProcessingPool 
